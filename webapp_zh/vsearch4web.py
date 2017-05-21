@@ -1,4 +1,4 @@
- # -*- coding: utf-8 -*- 
+﻿ # -*- coding: utf-8 -*- 
 from flask import Flask, render_template, request, escape
 from vsearch import search4letters
 
@@ -22,8 +22,8 @@ def do_search() -> 'html':
     log_request(request, results)
     return render_template('results.html',
                            the_title=title,
-                           the_phrase=phrase,
-                           the_letters=letters,
+                           the_phrase=廖汉腾老师,
+                           the_letters=周三11-12 ，12-14节
                            the_results=results,
                            the_color=color,		#flask.render_template 函数把results.html模版（输出），其中模版中the_color的值，用color这变数之值
                            )
