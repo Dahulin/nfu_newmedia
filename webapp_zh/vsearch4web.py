@@ -1,3 +1,4 @@
+ # -*- coding: utf-8 -*- 
 from flask import Flask, render_template, request, escape
 from vsearch import search4letters
 
@@ -6,7 +7,7 @@ app = Flask(__name__)
 
 def log_request(req: 'flask_request', res: str) -> None:
     """Log details of the web request and the results."""
-    with open('vsearch.log', 'a') as log:
+    with open('vsearch.log', 'a', encoding='utf8') as log:
         print(req.form, req.remote_addr, req.user_agent, res, file=log, sep='|')
 
 
@@ -15,14 +16,17 @@ def do_search() -> 'html':
     """Extract the posted data; perform the search; return results."""
     phrase = request.form['phrase']
     letters = request.form['letters']
+    color = request.form['user_color']	#从entry.html模版（输入）取到变数名称user_color的值，存放在color这变数下
     title = '以下是您的结果：'
-    results = str(search4letters(phrase, letters))
+    results = search4letters(phrase, letters)
     log_request(request, results)
     return render_template('results.html',
                            the_title=title,
                            the_phrase=phrase,
                            the_letters=letters,
-                           the_results=results,)
+                           the_results=results,
+                           the_color=color,		#flask.render_template 函数把results.html模版（输出），其中模版中the_color的值，用color这变数之值
+                           )
 
 
 @app.route('/')
@@ -30,7 +34,7 @@ def do_search() -> 'html':
 def entry_page() -> 'html':
     """Display this webapp's HTML form."""
     return render_template('entry.html',
-                           the_title='欢迎来到网上 汉语找介词！')
+                           the_title='欢迎来到网上 汉语找可能介词！')
 
 
 @app.route('/viewlog')
