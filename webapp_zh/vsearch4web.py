@@ -17,15 +17,13 @@ def do_search() -> 'html':
     phrase = request.form['phrase']
     letters = request.form['letters']
     color = request.form['user_color']	#从entry.html模版（输入）取到变数名称user_color的值，存放在color这变数下
-    title = '以下是您的结果：'
+    title = '以下是您的英文翻译结果：'
     results = search4letters(phrase, letters)
     log_request(request, results)
     return render_template('results.html',
                            the_title=title,
-                           the_phrase=phrase
-                           the_letters=letters
-                           the_results=results,
-                           the_color=color,		#flask.render_template 函数把results.html模版（输出），其中模版中the_color的值，用color这变数之值
+                           the_phrase=phrase,
+                           		
                            )
 
 
@@ -34,7 +32,7 @@ def do_search() -> 'html':
 def entry_page() -> 'html':
     """Display this webapp's HTML form."""
     return render_template('entry.html',
-                           the_title='欢迎来到网上 汉语找可能介词！')
+                           the_title='欢迎来到中英互译，请输入你要查的中英文')
 
 
 @app.route('/viewlog')
