@@ -6,18 +6,13 @@
 
 <p>您提交了以下数据：</p>
 <table>
-<tr><td>中文：</td><td>{{ the_phrase }}</td></tr>
-<tr><td>英文：</td><td>{{ the_phrase }}</td></tr>
-
+<tr><td>中文：</td><td>{{ the_Chinese }}</td></tr>
+<tr><td>英文：</td><td>{{ the_English }}</td></tr>
 </table>
 
-<p>在</p>
 
-<blockquote>{{the_phrase }}</blockquote>
+<p>在"{{the_Chinese }}" 中搜索"{{the_English }}" ,返回以下结果：</p>
 
-<p>中搜索</p>
-<blockquote>{{ the_letters }}</blockquote>
-<p>返回以下结果：</p>
 <h3>{{ the_results }}</h3>
 
 {% endblock %}
